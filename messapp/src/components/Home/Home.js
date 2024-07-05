@@ -1,16 +1,21 @@
 import React, { useState } from "react";
 import Menu from "../../Menu/Menu";
-import data from "../../StaticData/Data";
+import items from "../../StaticData/Data";
 import Categores from "../../categores/Categores";
 
-const allCategories = ["all", ...new Set(data.map((item) => item.category))];
+const allCategories = ["all", ...new Set(items.map((item) => item.category))];
 
 function Home() {
   const [categories, setCategories] = useState(allCategories);
-  const [menuItems, setMenuItems] = useState(data);
+  const [menuItems, setMenuItems] = useState(items);
 
-  const filterItems = () => {
-    
+  const filterItems = (category) => {
+    if (category === "all") {
+      setMenuItems(items);
+      return;
+    }
+    const newItems = items.filter((item) => item.category === category);
+    setMenuItems(newItems);
   };
 
   return (
@@ -20,7 +25,7 @@ function Home() {
           <h2>Mess App</h2>
           <div className="underline"></div>
         </div>
-        <Categores categories={categories} filterItems={filterItems}/>
+        <Categores categories={categories} filterItems={filterItems} />
         <Menu items={menuItems} />
       </section>
     </main>

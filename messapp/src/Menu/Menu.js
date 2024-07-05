@@ -6,7 +6,7 @@ function Menu({ items }) {
       {items.map((item) => {
         return (
           <article className="menu-item" key={item.id}>
-            <img src={item.img} alt="" className="photo" />
+            <img src={item.img} alt="Photos" className="photo" />
             <div className="item-info">
               <header>
                 <h4>{item.title}</h4>
